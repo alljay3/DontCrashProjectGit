@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 126819572}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.36, y: 3.9299998, z: -10}
+  m_LocalPosition: {x: 10.36, y: 2.98, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265,9 +265,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 254932418}
-  - component: {fileID: 254932417}
   - component: {fileID: 254932416}
   - component: {fileID: 254932415}
+  - component: {fileID: 254932419}
   m_Layer: 0
   m_Name: airplane
   m_TagString: Untagged
@@ -348,24 +348,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &254932417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254932414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ad1974e0d8d23439b1ae46d67331d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3.91
-  _brakeFactor: 1.52
-  _rotationSpeed: 50
-  _gravityScale: 0
-  _windPower: 0
-  _windDirection: {x: 1, y: 0, z: 0}
 --- !u!4 &254932418
 Transform:
   m_ObjectHideFlags: 0
@@ -374,14 +356,35 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254932414}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.01370035, w: 0.9999062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.4699998, y: 2.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1699414313}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.57}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &254932419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254932414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7180a5560fda0964ead94e96d4416d9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startSpeed: 200
+  _maxSpeed: 400
+  _airplaneAcceleration: 30
+  _brakeFactor: 30
+  _gravityScale: 30
+  _gravityOnSpeedEffect: 20
+  _windPower: 0
+  _windDirection: {x: 1, y: 0, z: 0}
+  _rotationSpeed: 30
 --- !u!1 &460959264
 GameObject:
   m_ObjectHideFlags: 0
