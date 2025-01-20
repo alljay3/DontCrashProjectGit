@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
         _inputActions = new InputSystem_Actions();
         _playerRotation = new PlayerRotation(_inputActions, transform, _rotationSpeed);
 
-        //_speedModifiers.Add(new Graviry(_gravityScale));
+        _speedModifiers.Add(new Graviry(_gravityScale));
         _speedModifiers.Add(new Wind(_windPower, _windDirection));
         _speedModifiers.Add(new AirplanePower(_speed, _inputActions, transform));
         _speedModifiers.Add(new AirplaneBrake(_brakeFactor, _inputActions, transform));
