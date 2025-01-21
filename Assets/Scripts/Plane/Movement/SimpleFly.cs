@@ -21,6 +21,10 @@ public class SimpleFly : ISpeedModifier
         _maxSpeed = maxSpeed;
     }
 
+    public float Speed { 
+        get { return _speed; }
+    }
+
     public Vector3 Apply(Vector3 velocity, float deltaTime)
     {
         float playerInput = _inputActions.Player.Move.ReadValue<Vector2>().y;
