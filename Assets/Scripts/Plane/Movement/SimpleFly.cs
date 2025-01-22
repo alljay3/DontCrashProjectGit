@@ -34,11 +34,6 @@ public class SimpleFly : ISpeedModifier
             _speed += _acceleration * deltaTime * playerInput;
         }
 
-        float speedAlongRight = Vector3.Dot(velocity, _airplaneTransform.right.normalized);
-        if (playerInput < 0 && speedAlongRight > 0)
-        {
-            _speed += _brakeAcceleration * deltaTime * playerInput;
-        }
 
         float angle = _airplaneTransform.rotation.eulerAngles.z;
         float sinValue = Mathf.Sin(angle * Mathf.Deg2Rad);
@@ -46,6 +41,11 @@ public class SimpleFly : ISpeedModifier
         _speed -= sinValue * _gravityScale * deltaTime;
 
         _speed = Mathf.Clamp(_speed, 0, _maxSpeed);
+        float speedAlongRight = Vector3.Dot(velocity, _airplaneTransform.right.normalized);
+        if (playerInput < 0 && speedAlongRight > 0)
+        {
+            _speed += _brakeAcceleration * deltaTime * playerInput;
+        }
 
         return _speed * deltaTime * _airplaneTransform.right.normalized;
 
