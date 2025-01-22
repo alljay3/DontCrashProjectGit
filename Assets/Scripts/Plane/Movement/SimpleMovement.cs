@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class SimpleMovement : MonoBehaviour
+public class SimpleMovement : LevelStateKeeper
 {
 
     [Header("Movement")]
@@ -27,6 +27,8 @@ public class SimpleMovement : MonoBehaviour
     private PlayerRotation _playerRotation;
     private InputSystem_Actions _inputActions;
 
+    private SimpleFly _simpleFly;
+
     [Inject]
     public void Construct(InputSystem_Actions inputActions)
     {
@@ -36,10 +38,15 @@ public class SimpleMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _playerRotation = new PlayerRotation(_inputActions, transform, _rotationSpeed);
-
-        _speedModifiers.Add(new SimpleFly(_startSpeed, _airplaneAcceleration, _maxSpeed, _brakeFactor, _gravityOnSpeedEffect, transform, _inputActions));
+        _simpleFly = new SimpleFly(_startSpeed, _airplaneAcceleration, _maxSpeed, _brakeFactor, _gravityOnSpeedEffect, transform, _inputActions);
+        _speedModifiers.Add(_simpleFly);
         _speedModifiers.Add(new Graviry(_gravityScale));
         _speedModifiers.Add(new Wind(_windPower, _windDirection));
+    }
+    protected override void RestoreState()
+    {
+        base.RestoreState();
+        _simpleFly.Speed = _startSpeed;
     }
 
     private void FixedUpdate()

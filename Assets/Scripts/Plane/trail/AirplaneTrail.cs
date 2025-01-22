@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
-public class AirplaneTrail : MonoBehaviour
+public class AirplaneTrail : LevelStateKeeper
 {
 
     private InputSystem_Actions _actions;
@@ -12,6 +12,18 @@ public class AirplaneTrail : MonoBehaviour
     {
         _trailRenderer = GetComponent<TrailRenderer>();
         _trailRenderer.emitting = false;
+    }
+    protected override void RestoreState()
+    {
+        base.RestoreState();
+        _trailRenderer.Clear();
+        gameObject.SetActive(false);
+    }
+
+    protected override void OnStart()
+    {
+        base.OnStart();
+        gameObject.SetActive(true);
     }
 
     [Inject]

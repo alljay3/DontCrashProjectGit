@@ -23,6 +23,7 @@ public class SimpleFly : ISpeedModifier
 
     public float Speed { 
         get { return _speed; }
+        set { _speed = value; }
     }
 
     public Vector3 Apply(Vector3 velocity, float deltaTime)

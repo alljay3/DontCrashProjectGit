@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 126819573}
   - component: {fileID: 126819576}
   - component: {fileID: 126819577}
+  - component: {fileID: 126819578}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -406,6 +407,18 @@ MonoBehaviour:
   _targetTransform: {fileID: 254932418}
   _offset: {x: 0, y: 0, z: -10}
   _smoothing: 1
+--- !u!114 &126819578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126819572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1944ab942ab1c4d89e6315e5a163f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &178440845
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,6 +594,7 @@ GameObject:
   - component: {fileID: 254932415}
   - component: {fileID: 254932419}
   - component: {fileID: 254932420}
+  - component: {fileID: 254932421}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -693,13 +707,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7180a5560fda0964ead94e96d4416d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startSpeed: 0
+  _startSpeed: 300
   _maxSpeed: 400
   _airplaneAcceleration: 50
   _brakeFactor: 50
   _gravityScale: 70.8
   _gravityOnSpeedEffect: 28.3
-  _windPower: 100
+  _windPower: 0
   _windDirection: {x: 1, y: 0, z: 0}
   _rotationSpeed: 50
 --- !u!114 &254932420
@@ -720,6 +734,18 @@ MonoBehaviour:
   _gravityScale: 10
   _windPower: 0
   _windDirection: {x: 1, y: 0, z: 0}
+--- !u!114 &254932421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254932414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb1944ab942ab1c4d89e6315e5a163f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &288494621
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +974,7 @@ WheelJoint2D:
     m_Angle: 90
   m_UseMotor: 1
   m_Motor:
-    m_MotorSpeed: 340
+    m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
 --- !u!50 &320013678
 Rigidbody2D:
@@ -1394,7 +1420,7 @@ WheelJoint2D:
     m_Angle: 90
   m_UseMotor: 1
   m_Motor:
-    m_MotorSpeed: 340
+    m_MotorSpeed: 0
     m_MaximumMotorForce: 10000
 --- !u!50 &681496248
 Rigidbody2D:
@@ -1672,14 +1698,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104020414}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.18103409, w: 0.9834768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.31, y: 7.43, z: -0.17752288}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 254932418}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20.86}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1617832157
 GameObject:
   m_ObjectHideFlags: 0
