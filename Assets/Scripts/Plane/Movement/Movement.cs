@@ -1,6 +1,7 @@
 using Assets.Scripts.Plane.Movement;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Movement : MonoBehaviour
 {
@@ -22,24 +23,24 @@ public class Movement : MonoBehaviour
     private List<ISpeedModifier> _speedModifiers = new List<ISpeedModifier>();
     private PlayerRotation _playerRotation;
     private InputSystem_Actions _inputActions;
+
+    [Inject]
+    public void Construct(InputSystem_Actions inputActions)
+    {
+        _inputActions = inputActions;
+    }
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _inputActions = new InputSystem_Actions();
+    
         _playerRotation = new PlayerRotation(_inputActions, transform, _rotationSpeed);
 
-        _speedModifiers.Add(new Graviry(_gravityScale));
-        _speedModifiers.Add(new Wind(_windPower, _windDirection));
         _speedModifiers.Add(new AirplanePower(_speed, _inputActions, transform));
         _speedModifiers.Add(new AirplaneBrake(_brakeFactor, _inputActions, transform));
-    }
-    private void OnEnable()
-    {
-        _inputActions.Enable();
-    }
-    private void OnDisable()
-    {
-        _inputActions.Disable();
+        //_speedModifiers.Add(new RedirectRight(0.12f,transform));
+        _speedModifiers.Add(new Graviry(_gravityScale));
+        _speedModifiers.Add(new Wind(_windPower, _windDirection));
     }
 
     private void FixedUpdate()
