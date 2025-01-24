@@ -21,9 +21,12 @@ public class SimpleMovement : LevelStateKeeper
     [Header("Rotation")]
     [SerializeField] private float _rotationSpeed = 10;
 
+    [Header("Ground")]
+    [SerializeField] private GroundCheck _groundCheck;
 
     private Rigidbody2D _rb;
-    private List<ISpeedModifier> _speedModifiers = new List<ISpeedModifier>();
+    private List<ISpeedModifier> _flySpeedModifiers = new List<ISpeedModifier>();
+    private List<ISpeedModifier> _groundSpeedModifiers = new List<ISpeedModifier>();
     private PlayerRotation _playerRotation;
     private InputSystem_Actions _inputActions;
 
@@ -38,10 +41,17 @@ public class SimpleMovement : LevelStateKeeper
     {
         _rb = GetComponent<Rigidbody2D>();
         _playerRotation = new PlayerRotation(_inputActions, transform, _rotationSpeed);
-        _simpleFly = new SimpleFly(_startSpeed, _airplaneAcceleration, _maxSpeed, _brakeFactor, _gravityOnSpeedEffect, transform, _inputActions);
-        _speedModifiers.Add(_simpleFly);
-        _speedModifiers.Add(new Graviry(_gravityScale));
-        _speedModifiers.Add(new Wind(_windPower, _windDirection));
+        _simpleFly = new SimpleFly(_startSpeed, _groundCheck, _airplaneAcceleration, _maxSpeed, _brakeFactor, _gravityOnSpeedEffect, transform, _inputActions);
+        _flySpeedModifiers.Add(_simpleFly);
+        _groundSpeedModifiers.Add(_simpleFly);
+
+        Graviry gravity = new Graviry(_gravityScale);
+        _flySpeedModifiers.Add(gravity);
+        _groundSpeedModifiers.Add(gravity);
+
+        Wind wind = new Wind(_windPower, _windDirection);
+        _flySpeedModifiers.Add(wind);
+
     }
     protected override void RestoreState()
     {
@@ -49,9 +59,15 @@ public class SimpleMovement : LevelStateKeeper
         _simpleFly.Speed = _startSpeed;
     }
 
+    public float Speed()
+    {
+        return _simpleFly.Speed;
+    }
+
     private void FixedUpdate()
     {
-        foreach (var speedModifier in _speedModifiers)
+        var speedModifiers = _groundCheck.IsGrounded ? _groundSpeedModifiers : _flySpeedModifiers;
+        foreach (var speedModifier in speedModifiers)
         {
             _rb.linearVelocity = speedModifier.Apply(_rb.linearVelocity, Time.fixedDeltaTime);
         }

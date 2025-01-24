@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class DeathOnKillZone : MonoBehaviour
+public class DeathOnGround : MonoBehaviour
 {
     private Level _level;
     [Inject]
@@ -13,7 +13,7 @@ public class DeathOnKillZone : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.GetComponent<KillObject>() != null) {
+        if (collision.gameObject.GetComponent<Ground>() != null) {
             _level.GameOver();
         }
     }
